@@ -1,6 +1,6 @@
 <div class="row" style="display:none;">
   <div class="col-sm-4 col-sm-offset-4 text-center">
-    <h1>Login</h1>
+    <h1><?php echo $data['title'];?></h1>
     <?php if( isset($data['error']) ):?>
       <div class="alert alert-danger">
         <?php echo $data['error'];?>

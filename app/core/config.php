@@ -32,7 +32,7 @@ class Config {
 		define('SESSION_PREFIX','smvc_');
 
 		//optionall create a constant for the name of the site
-		define('SITETITLE','V2.1');
+		define('SITETITLE','eReg');
     
 		//turn on custom error handling
 		set_exception_handler('core\logger::exception_handler');

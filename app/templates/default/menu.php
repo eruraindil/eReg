@@ -66,28 +66,29 @@ if( Session::get('username') ) {
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <ul class="nav pull-right" id='main-nav'>
-        <?php foreach( $menu as $title => $item ) {
-          switch(gettype($item)) {
+    <div class="col-md-11">
+      <ul class="nav nav-pills pull-right" id='main-nav'>
+        <?php $uri = ($_SERVER["HTTPS"] ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        foreach( $menu as $title => $item ):
+          switch(\gettype($item)):
             case 'string':?>
-              <li class=""><a href="<?php echo $item;?>"><?php echo $title;?></a></li>
+              <li<?php echo $uri === $item ? ' class="active"' : '';?>><a href="<?php echo $item;?>"><?php echo $title;?></a></li>
               <?php break;
             case 'array':?>
-              <li class="dropdown">
+              <li class="dropdown<?php echo ""; ?>">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   <?php echo $title;?> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                <?php foreach( $item as $title => $url ) {?>
-                  <li class=""><a href="<?php echo $url;?>"><?php echo $title;?></a></li>
-                <?php }?>
+                <?php foreach( $item as $title => $url ):?>
+                  <li<?php echo $uri === $url ? ' class="active"' : '';?>><a href="<?php echo $url;?>"><?php echo $title;?></a></li>
+                <?php endforeach;?>
                 </ul>
               </li>
               <?php break;
             default:
-          }
-        }?>
+          endswitch;
+        endforeach;?>
       </ul>
     </div>
   </div>

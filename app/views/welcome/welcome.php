@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-10 content">
+  <div class="col-md-10 col-md-offset-1 content">
     <h1><?php echo $data['title'];?></h1>
     <hr />
     <img src="<?php echo \helpers\url::get_template_path();?>media\girl.jpg" alt="girl" class="pull-left img-responsive img-rounded">
@@ -8,7 +8,7 @@
     <p>+1 Schlitz hoodie PBR actually tousled. Single-origin coffee cliche deep v, fingerstache yr iPhone ennui ethical. Jean shorts art party salvia Banksy, YOLO tousled semiotics XOXO fap Odd Future synth try-hard narwhal keytar. Twee distillery stumptown skateboard fingerstache Bushwick artisan. Chambray bitters sustainable hella, fashion axe asymmetrical bicycle rights seitan fingerstache keffiyeh plaid pug fanny pack swag. Retro tofu banjo hashtag gastropub Marfa. Thundercats PBR&amp;B ennui stumptown Bushwick photo booth ugh.</p>
     <p>Carles you probably haven't heard of them post-ironic, before they sold out artisan deep v literally banjo vegan Wes Anderson Etsy letterpress. Lomo 90's biodiesel, chillwave American Apparel swag synth. Banjo fap drinking vinegar, ugh pug you probably haven't heard of them trust fund 90's Carles disrupt before they sold out brunch. Odd Future viral Pinterest drinking vinegar Blue Bottle whatever. Mumblecore DIY selfies church-key tote bag polaroid, fixie synth quinoa American Apparel Schlitz cardigan Etsy four loko. Tattooed viral hella synth, High Life PBR cred forage irony 90's Odd Future ugh. Irony banjo keytar, lo-fi four loko Godard yr seitan gastropub cornhole sriracha twee kale chips before they sold out.</p>
   </div>
-  <div class="col-md-2">
+<!--  <div class="col-md-2">
     <h2>Sidebar</h2>
-  </div>
+  </div>-->
 </div>

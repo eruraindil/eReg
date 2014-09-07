@@ -19,9 +19,8 @@ class Welcome extends \core\controller{
 
 		if( !Session::get('username') ) {
 			Url::redirect('login');
-	//		Session::set('username','matthew.roberts@sk.lung.ca');
 		}
-		$data['title'] = 'Welcome';
+		//$data['title'] = 'Welcome';
 
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);
