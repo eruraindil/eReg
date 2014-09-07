@@ -15,11 +15,11 @@ class Error extends Controller {
 	 * $error holder
 	 * @var string
 	 */
-	private $_error = null; 
+	private $_error = null;
 
 	/**
 	 * save error to $this->_error
-	 * @param string $error 
+	 * @param string $error
 	 */
 	public function __construct($error){
 		parent::__construct();
@@ -30,14 +30,15 @@ class Error extends Controller {
 	 * load a 404 page with the error message
 	 */
 	public function index(){
-		
+
 		$data['title'] = '404';
 		$data['error'] = $this->_error;
-		
+
 		View::rendertemplate('header',$data);
+		View::rendertemplate('menu',$data);
 		View::render('error/404',$data);
 		View::rendertemplate('footer',$data);
-		
+
 	}
 
 	/**

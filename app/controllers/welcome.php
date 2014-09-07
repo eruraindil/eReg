@@ -1,13 +1,8 @@
 <?php namespace controllers;
-use core\view as View;
+use core\view as View,
+		\helpers\session as Session,
+		\helpers\url as Url;
 
-/*
- * Welcome controller
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 2.1
- * @date June 27, 2014
- */
 class Welcome extends \core\controller{
 
 	/**
@@ -20,13 +15,28 @@ class Welcome extends \core\controller{
 	/**
 	 * define page title and load template files
 	 */
-	public function index(){	
+	public function index(){
 
+		if( !Session::get('username') ) {
+			Url::redirect('login');
+	//		Session::set('username','matthew.roberts@sk.lung.ca');
+		}
 		$data['title'] = 'Welcome';
 
 		View::rendertemplate('header',$data);
+		View::rendertemplate('menu',$data);
 		View::render('welcome/welcome',$data);
+		View::rendertemplate('content-bottom',$data);
 		View::rendertemplate('footer',$data);
 	}
-	
+
+	public function about(){
+		$data['title'] = 'About';
+
+		View::rendertemplate('header',$data);
+		View::rendertemplate('menu',$data);
+		View::render('welcome/about',$data);
+		View::rendertemplate('footer',$data);
+	}
+
 }

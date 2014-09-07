@@ -40,8 +40,9 @@ if (defined('ENVIRONMENT')){
 	switch (ENVIRONMENT){
 		case 'development':
 			error_reporting(E_ALL);
+			ini_set("display_errors", 1);
 		break;
-	
+  
 		case 'production':
 			error_reporting(0);
 		break;
@@ -57,7 +58,12 @@ use \core\router as Router,
     \helpers\url as Url;
 
 //define routes
-Router::any('', '\controllers\welcome@index');
+Router::any('', 			'\controllers\welcome@index');
+Router::get('about', 	'\controllers\welcome@about');
+
+Router::get('login', 	'\controllers\auth@index');
+Router::post('login', '\controllers\auth@login');
+Router::any('logout', '\controllers\auth@logout');
 
 //if no route found
 Router::error('\core\error@index');

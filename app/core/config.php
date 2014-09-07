@@ -14,7 +14,7 @@ class Config {
 		ob_start();
 
 		//site address
-		define('DIR','http://domain.com/');
+		define('DIR','http://home.mroberts.me/eReg/');
 		
 		//set default controller and method for legacy calls
 		define('DEFAULT_CONTROLLER', 'welcome');
@@ -33,20 +33,20 @@ class Config {
 
 		//optionall create a constant for the name of the site
 		define('SITETITLE','V2.1');
-		
+    
 		//turn on custom error handling
 		set_exception_handler('core\logger::exception_handler');
 		set_error_handler('core\logger::error_handler');
 		
 		//set timezone
-		date_default_timezone_set('Europe/London');
-		
+		date_default_timezone_set('America/Regina');
+    
 		//start sessions
 		\helpers\session::init();
 
 		//set the default template
 		\helpers\session::set('template','default');
-		
+
 	}
 
 }
