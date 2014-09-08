@@ -35,6 +35,7 @@ class Welcome extends \core\controller{
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);
 		View::render('welcome/about',$data);
+		View::rendertemplate('content-bottom',$data);
 		View::rendertemplate('footer',$data);
 	}
 

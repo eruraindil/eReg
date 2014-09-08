@@ -1,17 +1,17 @@
-![Simple MVC Framework](http://simplemvcframework.com/app/templates/smvcf/img/logo.png)
+#eREG
+Playing around with PHP and MVC, using MVC Framework because it is closer to the code than Symfony or Laravel, and I enjoy that.
 
-#V2.1
-#What is Simple MVC Framework?
+##Based on Simple MVC Framework
 
 Simple MVC Framework is a PHP 5.3 MVC system. It's designed to be lightweight and modular, allowing developers to build better and easy to maintain code with PHP.
 
 The base framework comes with a range of helper classes.
 
-## Documentation
+### Documentation
 
 Full docs & tutorials are available at [simplemvcframework.com](http://simplemvcframework.com)
 
-##Requirements
+###Requirements
 
  The framework requirements are limited
 
@@ -20,7 +20,7 @@ Full docs & tutorials are available at [simplemvcframework.com](http://simplemvc
 
  Although a database is not required, if a database is to be used the system is designed to work with a MySQL database. The framework can be changed to work with another database type.
 
-## Installation
+### Installation
 
 1. Download the framework
 2. Unzip the package.

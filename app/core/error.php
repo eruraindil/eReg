@@ -37,6 +37,7 @@ class Error extends Controller {
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);
 		View::render('error/404',$data);
+		View::rendertemplate('content-bottom',$data);
 		View::rendertemplate('footer',$data);
 
 	}
