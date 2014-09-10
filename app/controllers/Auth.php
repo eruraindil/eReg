@@ -1,5 +1,5 @@
 <?php namespace controllers;
-use core\view as View,
+use \core\view as View,
     \helpers\session as Session,
     \helpers\password as Password,
     \helpers\url as Url;
@@ -21,7 +21,7 @@ class Auth extends \core\controller {
   }
 
   public function login() {
-    $users = new \models\users();
+    $users = new \models\User();
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $user = $users->getUser($username);

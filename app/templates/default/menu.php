@@ -2,14 +2,18 @@
 use \helpers\session as Session;
 $menu = array();
 
-if( Session::get('username') ) {
+
   $menu['Home'] = DIR;
+  $menu['Events'] = DIR . 'events';
   $menu['About Us'] = DIR . 'about';
   $menu['Help'] = array(
     'FAQ' => DIR . 'help/faq',
     'Contact' => DIR . 'help/contact'
   );
+if( Session::get('username') ) {
   $menu['Logout'] = DIR . 'logout';
+} else {
+  $menu['Login'] = DIR . 'login';
 }
 ?>
 

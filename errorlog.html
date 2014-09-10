@@ -1,3 +1,30 @@
+<p>Error on Sep 09, 2014 20:04PM - Invalid argument supplied for foreach() in /var/www/eReg/app/views/events/index.php on line 6</p><p>Error on Sep 09, 2014 20:02PM - Invalid argument supplied for foreach() in /var/www/eReg/app/views/events/index.php on line 6</p><h3>Exception information:</h3>
+
+       <p><strong>Date:</strong> Sep 09, 2014 19:49PM</p>
+
+       <p><strong>Message:</strong> SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ereg.Events' doesn't exist (SQL: select * from `Events`)</p>
+
+       <p><strong>Code:</strong> 42S02</p>
+
+       <p><strong>File:</strong> /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connection.php</p>
+
+       <p><strong>Line:</strong> 600</p>
+
+       <h3>Stack trace:</h3>
+
+       <pre>#0 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connection.php(556): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connection.php(290): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#2 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Query/Builder.php(1359): Illuminate\Database\Connection->select('select * from `...', Array)
+#3 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Query/Builder.php(1349): Illuminate\Database\Query\Builder->runSelect()
+#4 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Query/Builder.php(1336): Illuminate\Database\Query\Builder->getFresh(Array)
+#5 /var/www/eReg/app/models/Event.php(14): Illuminate\Database\Query\Builder->get()
+#6 /var/www/eReg/app/controllers/Events.php(15): models\Event->getEventsAll()
+#7 /var/www/eReg/app/core/router.php(89): controllers\Events->index()
+#8 /var/www/eReg/app/core/router.php(156): core\Router::invokeObject('\controllers\Ev...')
+#9 /var/www/eReg/index.php(73): core\Router::dispatch()
+#10 {main}</pre>
+
+       <hr />
 <h3>Exception information:</h3>
 
        <p><strong>Date:</strong> Sep 09, 2014 18:27PM</p>

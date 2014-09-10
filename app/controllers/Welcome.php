@@ -1,5 +1,5 @@
 <?php namespace controllers;
-use core\view as View,
+use \core\view as View,
 		\helpers\session as Session,
 		\helpers\url as Url;
 
@@ -17,10 +17,12 @@ class Welcome extends \core\controller{
 	 */
 	public function index(){
 
-		if( !Session::get('username') ) {
-			Url::redirect('login');
-		}
+//		if( !Session::get('username') ) {
+//			Url::redirect('login');
+//		}
 		//$data['title'] = 'Welcome';
+    
+    $data = array();
 
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);

@@ -7,6 +7,6 @@ class User extends \core\model {
 	}
 
   public function getUser($username) {
-    return Capsule::table('user')->where('username', '=', $username)->get();
+    return Capsule::table('User')->where('username', '=', $username)->get();
   }
 }

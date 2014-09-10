@@ -58,13 +58,15 @@ use \core\router as Router,
     \helpers\url as Url;
 
 //define routes
-Router::any('', 			'\controllers\welcome@index');
-Router::get('about', 	'\controllers\welcome@about');
-Router::get('events', 	'\controllers\events@about');
+Router::any('', 			'\controllers\Welcome@index');
+Router::get('about', 	'\controllers\Welcome@about');
 
-Router::get('login', 	'\controllers\auth@index');
-Router::post('login', '\controllers\auth@login');
-Router::any('logout', '\controllers\auth@logout');
+Router::get('events', 	'\controllers\Events@index');
+Router::get('events/(:num)', 	'\controllers\Events@show');
+
+Router::get('login', 	'\controllers\Auth@index');
+Router::post('login', '\controllers\Auth@login');
+Router::any('logout', '\controllers\Auth@logout');
 
 //if no route found
 Router::error('\core\error@index');

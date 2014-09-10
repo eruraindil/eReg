@@ -1,4 +1,5 @@
 <?php namespace core;
+use \helpers\phpmailer\mail as Mail;
 /*
  * logger class - Custom errors
  *
@@ -18,13 +19,13 @@ class Logger {
    * in the event of an error show this message
    */
   public static function customErrorMsg() {
-     echo "<p>An error occured, The error has been reported to the development team and will be addressed asap.</p>";
-    \mail(
-      ADMINEMAIL,
-      "Error on " . SITETITLE,
-      "Please check: " . DIR . "/errorlog.html",
-      "From: noreply@" . filter_input(INPUT_SERVER, "SERVER_NAME", FILTER_SANITIZE_STRING) . "\r\nX-Mailer: PHP/" . phpversion()
-    );
+    echo "<p>An error occured, The error has been reported to the development team and will be addressed asap.</p>";
+    $mail = new Mail();
+    $mail->setFrom("noreply@" . filter_input(INPUT_SERVER, "SERVER_NAME", FILTER_SANITIZE_STRING));
+    $mail->addAddress(ADMINEMAIL);
+    $mail->subject("Error on " . SITETITLE);
+    $mail->body("Please check: " . DIR . "/errorlog.html");
+    $mail->send();
     exit;
   }
 
