@@ -60,6 +60,7 @@ use \core\router as Router,
 //define routes
 Router::any('', 			'\controllers\welcome@index');
 Router::get('about', 	'\controllers\welcome@about');
+Router::get('events', 	'\controllers\events@about');
 
 Router::get('login', 	'\controllers\auth@index');
 Router::post('login', '\controllers\auth@login');

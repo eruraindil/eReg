@@ -20,19 +20,14 @@ class Config {
 		define('DEFAULT_CONTROLLER', 'welcome');
 		define('DEFAULT_METHOD'    , 'index');
 
-		//database details ONLY NEEDED IF USING A DATABASE
-		define('DB_TYPE','mysql');
-		define('DB_HOST','localhost');
-		define('DB_NAME','dbname');
-		define('DB_USER','username');
-		define('DB_PASS','password');
-		define('PREFIX','smvc_');
-
 		//set prefix for sessions
 		define('SESSION_PREFIX','smvc_');
 
-		//optionall create a constant for the name of the site
+		//optional create a constant for the name of the site
 		define('SITETITLE','eREG');
+    
+    //optional email associated with the site maintainer who should get messages
+    define('ADMINEMAIL','matt@stikmen.ca');
     
 		//turn on custom error handling
 		set_exception_handler('core\logger::exception_handler');

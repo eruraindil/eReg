@@ -1,0 +1,93 @@
+<h3>Exception information:</h3>
+
+       <p><strong>Date:</strong> Sep 09, 2014 18:27PM</p>
+
+       <p><strong>Message:</strong> SQLSTATE[28000] [1045] Access denied for user 'smvc'@'localhost' (using password: YES)</p>
+
+       <p><strong>Code:</strong> 1045</p>
+
+       <p><strong>File:</strong> /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/Connector.php</p>
+
+       <p><strong>Line:</strong> 47</p>
+
+       <h3>Stack trace:</h3>
+
+       <pre>#0 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/Connector.php(47): PDO->__construct('mysql:host=loca...', 'smvc', 'smvc', Array)
+#1 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/MySqlConnector.php(20): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#2 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/ConnectionFactory.php(59): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#3 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/ConnectionFactory.php(47): Illuminate\Database\Connectors\ConnectionFactory->createSingleConnection(Array)
+#4 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/DatabaseManager.php(161): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'default')
+#5 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/DatabaseManager.php(63): Illuminate\Database\DatabaseManager->makeConnection('default')
+#6 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(135): Illuminate\Database\DatabaseManager->connection(NULL)
+#7 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(101): Illuminate\Database\Capsule\Manager->getConnection(NULL)
+#8 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(113): Illuminate\Database\Capsule\Manager::connection(NULL)
+#9 /var/www/eReg/app/models/users.php(10): Illuminate\Database\Capsule\Manager::table('users')
+#10 /var/www/eReg/app/controllers/auth.php(27): models\Users->getUser('matt@stikmen.ca')
+#11 /var/www/eReg/app/core/router.php(89): controllers\Auth->login()
+#12 /var/www/eReg/app/core/router.php(156): core\Router::invokeObject('\controllers\au...')
+#13 /var/www/eReg/index.php(72): core\Router::dispatch()
+#14 {main}</pre>
+
+       <hr />
+<h3>Exception information:</h3>
+
+       <p><strong>Date:</strong> Sep 09, 2014 18:00PM</p>
+
+       <p><strong>Message:</strong> SQLSTATE[28000] [1045] Access denied for user 'smvc'@'localhost' (using password: YES)</p>
+
+       <p><strong>Code:</strong> 1045</p>
+
+       <p><strong>File:</strong> /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/Connector.php</p>
+
+       <p><strong>Line:</strong> 47</p>
+
+       <h3>Stack trace:</h3>
+
+       <pre>#0 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/Connector.php(47): PDO->__construct('mysql:host=loca...', 'smvc', 'smvc', Array)
+#1 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/MySqlConnector.php(20): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#2 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/ConnectionFactory.php(59): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#3 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/ConnectionFactory.php(47): Illuminate\Database\Connectors\ConnectionFactory->createSingleConnection(Array)
+#4 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/DatabaseManager.php(161): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'default')
+#5 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/DatabaseManager.php(63): Illuminate\Database\DatabaseManager->makeConnection('default')
+#6 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(135): Illuminate\Database\DatabaseManager->connection(NULL)
+#7 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(101): Illuminate\Database\Capsule\Manager->getConnection(NULL)
+#8 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(113): Illuminate\Database\Capsule\Manager::connection(NULL)
+#9 /var/www/eReg/app/models/users.php(10): Illuminate\Database\Capsule\Manager::table('users')
+#10 /var/www/eReg/app/controllers/auth.php(27): models\Users->getUser('matt@stikmen.ca')
+#11 /var/www/eReg/app/core/router.php(89): controllers\Auth->login()
+#12 /var/www/eReg/app/core/router.php(156): core\Router::invokeObject('\controllers\au...')
+#13 /var/www/eReg/index.php(72): core\Router::dispatch()
+#14 {main}</pre>
+
+       <hr />
+<h3>Exception information:</h3>
+
+       <p><strong>Date:</strong> Sep 09, 2014 17:58PM</p>
+
+       <p><strong>Message:</strong> SQLSTATE[42000] [1044] Access denied for user 'smvc'@'localhost' to database 'ereg'</p>
+
+       <p><strong>Code:</strong> 1044</p>
+
+       <p><strong>File:</strong> /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/Connector.php</p>
+
+       <p><strong>Line:</strong> 47</p>
+
+       <h3>Stack trace:</h3>
+
+       <pre>#0 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/Connector.php(47): PDO->__construct('mysql:host=loca...', 'smvc', 'smvc', Array)
+#1 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/MySqlConnector.php(20): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#2 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/ConnectionFactory.php(59): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#3 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Connectors/ConnectionFactory.php(47): Illuminate\Database\Connectors\ConnectionFactory->createSingleConnection(Array)
+#4 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/DatabaseManager.php(161): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'default')
+#5 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/DatabaseManager.php(63): Illuminate\Database\DatabaseManager->makeConnection('default')
+#6 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(135): Illuminate\Database\DatabaseManager->connection(NULL)
+#7 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(101): Illuminate\Database\Capsule\Manager->getConnection(NULL)
+#8 /var/www/eReg/vendor/illuminate/database/Illuminate/Database/Capsule/Manager.php(113): Illuminate\Database\Capsule\Manager::connection(NULL)
+#9 /var/www/eReg/app/models/users.php(10): Illuminate\Database\Capsule\Manager::table('users')
+#10 /var/www/eReg/app/controllers/auth.php(27): models\Users->getUser('matt@stikmen.ca')
+#11 /var/www/eReg/app/core/router.php(89): controllers\Auth->login()
+#12 /var/www/eReg/app/core/router.php(156): core\Router::invokeObject('\controllers\au...')
+#13 /var/www/eReg/index.php(72): core\Router::dispatch()
+#14 {main}</pre>
+
+       <hr />

@@ -9,7 +9,7 @@
 class Logger {
 
   /**
-   * determins if error should be displayed 
+   * determines if error should be displayed 
    * @var boolean
    */
   private static $print_error = false;
@@ -18,8 +18,14 @@ class Logger {
    * in the event of an error show this message
    */
   public static function customErrorMsg() {
-     echo "<p>An error occured, The error has been reported to the development team and will be addresses asap.</p>";  
-     exit;
+     echo "<p>An error occured, The error has been reported to the development team and will be addressed asap.</p>";
+    \mail(
+      ADMINEMAIL,
+      "Error on " . SITETITLE,
+      "Please check: " . DIR . "/errorlog.html",
+      "From: noreply@" . filter_input(INPUT_SERVER, "SERVER_NAME", FILTER_SANITIZE_STRING) . "\r\nX-Mailer: PHP/" . phpversion()
+    );
+    exit;
   }
 
   /**

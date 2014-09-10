@@ -28,8 +28,8 @@ class Model extends Controller {
 		$capsule->addConnection([
 		    'driver'    => 'mysql',
 		    'host'      => 'localhost',
-		    'database'  => 'smvc',
-		    'username'  => 'smvc',
+		    'database'  => 'ereg',
+		    'username'  => 'ereg',
 		    'password'  => 'smvc',
 		    'charset'   => 'utf8',
 		    'collation' => 'utf8_unicode_ci',
