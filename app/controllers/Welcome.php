@@ -16,10 +16,6 @@ class Welcome extends \core\controller{
 	 * define page title and load template files
 	 */
 	public function index(){
-
-//		if( !Session::get('username') ) {
-//			Url::redirect('login');
-//		}
 		//$data['title'] = 'Welcome';
     
     $data = array();

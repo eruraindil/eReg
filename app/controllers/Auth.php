@@ -33,6 +33,7 @@ class Auth extends \core\controller {
     if( $user[0]['username'] ) {
        if( Password::verify($password, $user[0]['password']) ) { //authenticated
         Session::set('username',$username);
+        Session::set('acl',$user[0]['acl']);
         Url::redirect('');
       } else {
         $data['title'] = SITETITLE . " Login";

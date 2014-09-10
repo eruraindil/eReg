@@ -22,14 +22,31 @@ class Events extends \core\controller {
   }
   
   public function show($slug){
-    $data['title'] = 'Events';
-    
     $events = new \models\Event();
     $data['event'] = $events->getEvent($slug);
-
+    $data['title'] = $data['event'][0]['name'];
+    
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);
 		View::render('events/show',$data);
+		View::rendertemplate('content-bottom',$data);
+		View::rendertemplate('footer',$data);
+  }
+  
+  public function edit($slug){
+    if( !Session::get('username') ) {
+			Url::redirect('login');
+  	}
+    $events = new \models\Event();
+    $data['event'] = $events->getEvent($slug);
+    $data['title'] = "Edit " . $data['event'][0]['name'];
+    
+    $data['js'] = "CKEDITOR.replace('editor1');";
+    $data['exjs'] = "<script src='//cdn.ckeditor.com/4.4.4/basic/ckeditor.js'></script>";
+
+		View::rendertemplate('header',$data);
+		View::rendertemplate('menu',$data);
+		View::render('events/edit',$data);
 		View::rendertemplate('content-bottom',$data);
 		View::rendertemplate('footer',$data);
   }

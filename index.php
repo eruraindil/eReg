@@ -63,6 +63,7 @@ Router::get('about', 	'\controllers\Welcome@about');
 
 Router::get('events', 	'\controllers\Events@index');
 Router::get('events/(:num)', 	'\controllers\Events@show');
+Router::get('events/(:num)/edit', 	'\controllers\Events@edit');
 
 Router::get('login', 	'\controllers\Auth@index');
 Router::post('login', '\controllers\Auth@login');
