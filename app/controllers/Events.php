@@ -1,7 +1,8 @@
 <?php namespace controllers;
 use \core\view as View,
 		\helpers\session as Session,
-		\helpers\url as Url;
+		\helpers\url as Url,
+    \models\Event as Event;
 
 class Events extends \core\controller {
   public function __construct(){
@@ -11,8 +12,7 @@ class Events extends \core\controller {
   public function index(){
     $data['title'] = 'Events';
     
-    $events = new \models\Event();
-    $data['events'] = $events->getEventsAll();
+    $data['events'] = Event::getObjsAll();
 
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);
@@ -21,27 +21,23 @@ class Events extends \core\controller {
 		View::rendertemplate('footer',$data);
   }
   
-  public function show($slug){
-    $events = new \models\Event();
-    $data['event'] = $events->getEvent($slug);
-    $data['title'] = $data['event'][0]['name'];
+  public function create(){
     
-		View::rendertemplate('header',$data);
-		View::rendertemplate('menu',$data);
-		View::render('events/show',$data);
-		View::rendertemplate('content-bottom',$data);
-		View::rendertemplate('footer',$data);
+  }
+  
+  public function make(){
+    
   }
   
   public function edit($slug){
-    if( !Session::get('username') ) {
+    if( !Session::get('username') ){
 			Url::redirect('login');
   	}
-    $events = new \models\Event();
-    $data['event'] = $events->getEvent($slug);
-    $data['title'] = "Edit " . $data['event'][0]['name'];
     
-    $data['js'] = "CKEDITOR.replace('editor1');";
+    $data['event'] = Event::getObj($slug);
+    $data['title'] = "Edit " . $data['event']->name;
+    
+    $data['js'] = "CKEDITOR.replace('description');";
     $data['exjs'] = "<script src='//cdn.ckeditor.com/4.4.4/basic/ckeditor.js'></script>";
 
 		View::rendertemplate('header',$data);
@@ -50,5 +46,31 @@ class Events extends \core\controller {
 		View::rendertemplate('content-bottom',$data);
 		View::rendertemplate('footer',$data);
   }
+  
+  public function show($slug){
+    $registrants = new \models\Registrant();
+    
+    $data['event'] = Event::getObj($slug);
+    $data['registrants'] = $registrants->getRegistrantsAllForEvent($slug);
+    $data['title'] = $data['event']->name;
+    
+		View::rendertemplate('header',$data);
+		View::rendertemplate('menu',$data);
+		View::render('events/show',$data);
+		View::rendertemplate('content-bottom',$data);
+		View::rendertemplate('footer',$data);
+  }
+  
+  public function update($slug){
+    $events = new \models\Event();
+    
+    $event = $events->getEvent($slug);
+    
+    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
+    $startTime = filter_input(INPUT_POST, "startTime", FILTER_SANITIZE_STRING);
+    $endTime = filter_input(INPUT_POST, "endTime", FILTER_SANITIZE_STRING);
+    $location = filter_input(INPUT_POST, "location", FILTER_SANITIZE_STRING);
+    $maxAttendance = filter_input(INPUT_POST, "maxAttendance", FILTER_SANITIZE_NUMBER_INT);
+  }
 }
-

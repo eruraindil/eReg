@@ -19,6 +19,14 @@ class Config {
 		//set default controller and method for legacy calls
 		define('DEFAULT_CONTROLLER', 'welcome');
 		define('DEFAULT_METHOD'    , 'index');
+    
+    //database details ONLY NEEDED IF USING A DATABASE
+		define('DB_TYPE','mysql');
+		define('DB_HOST','localhost');
+		define('DB_NAME','ereg');
+		define('DB_USER','ereg');
+		define('DB_PASS','smvc');
+		define('PREFIX','smvc_');
 
 		//set prefix for sessions
 		define('SESSION_PREFIX','smvc_');

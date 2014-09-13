@@ -21,6 +21,7 @@
         <input type="password" name="password" id="password" placeholder="password" class="form-control">
       </div>
       <input type="submit" class="btn btn-primary btn-lg btn-block" value="login">
+      <input type="hidden" name="goto" value="<?php echo $data['goto'];?>">
     </form>
   </div>
 </div>

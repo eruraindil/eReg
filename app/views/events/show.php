@@ -33,6 +33,9 @@
             <td><strong>End Time:</strong> <?php echo \date("H:i", strtotime($data['event'][0]['endTime']));?></td>
           </tr>
           <tr>
+            <td colspan=2><strong>Location:</strong> <?php echo $data['event'][0]['location'];?></td>
+          </tr>
+          <tr>
             <td colspan=2>
               <strong>Attendance</strong>
               <div class="progress">
@@ -42,21 +45,35 @@
               </div>
             </td>
           </tr>
-          <?php /*<tr>
-            <td colspan=2></td>
-          </tr>*/?>
         </table>
-        <a class="btn btn-primary btn-block btn-lg" href="<?php echo DIR . "events/" . $data['event'][0]['id'];?>/register">Register</a>
         <div class="btn-group">
-          <a href="<?php echo DIR . "events/" . $data['event'][0]['id'];?>/edit" class="btn btn-warning">Edit <span class="glyphicon glyphicon-edit"></span></a>
-          <a href="" class="btn btn-danger">Delete <span class="glyphicon glyphicon-remove"></span></a>
+          <a class="btn btn-primary btn-lg" href="<?php echo DIR . "events/" . $data['event'][0]['id'];?>/register">Register</a>
+          <?php if(Session::get("acl") == "admin"):?>
+          <a href="<?php echo DIR . "events/" . $data['event'][0]['id'];?>/edit" class="btn btn-warning btn-lg">Edit <span class="glyphicon glyphicon-edit"></span></a>
+          <a href="" class="btn btn-danger btn-lg">Delete <span class="glyphicon glyphicon-remove"></span></a>
+          <?php endif;?>
         </div>
       </div>
     </div>
     <?php if( Session::get("acl") == "admin"):?>
     <div class="row">
       <div class="col-md-12">
-        
+        <h2>Attendees</h2>
+        <ul class="list-group" id="events-list">
+          <?php foreach( $data['registrants'] as $registrant ):?>
+          <li class="list-group-item"><a href="<?php echo DIR . "user/" . $registrant['id'];?>"><?php echo $registrant['firstName'] . " " . $registrant['lastName'];?></a>
+            <?php if( Session::get("acl") == "admin"):?>
+            <div class="btn-group pull-right">
+              <!--<a href="<?php echo DIR . "events/" . $event['id'];?>/edit" class="btn btn-xs btn-warning">Edit <span class="glyphicon glyphicon-edit"></span></a>-->
+              <a href="" class="btn btn-xs btn-danger">Remove <span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+            <?php endif;?>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+        <?php if( count($data['registrants']) == 0 ):?>
+        <p>No registrations</p>
+        <?php endif;?>
       </div>
     </div>
     <?php endif;?>

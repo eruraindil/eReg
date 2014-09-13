@@ -1,8 +1,8 @@
 <?php namespace controllers;
-use \core\view as View,
-    \helpers\session as Session,
-    \helpers\password as Password,
-    \helpers\url as Url;
+use core\view as View,
+    helpers\session as Session,
+    helpers\password as Password,
+    helpers\url as Url;
 
 class Auth extends \core\controller {
 
@@ -11,19 +11,26 @@ class Auth extends \core\controller {
   }
 
   public function index() {
-    $data['title'] = SITETITLE . ' Login';
+    if( Session::get('username') ) {
+			Url::redirect("");
+  	}
+    
+    $data['title'] = SITETITLE . " Login";
     $data['jq'] = "\$('.row').slideDown(900, function(){\$('#username').focus();});";
+    $data['goto'] = filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_URL);
 
-    View::rendertemplate('header',$data);
-    View::rendertemplate('menu',$data);
-    View::render('login', $data);
-    View::rendertemplate('footer',$data);
+    View::rendertemplate("header",$data);
+    //View::rendertemplate("menu",$data);
+    View::render("login", $data);
+    View::rendertemplate("footer",$data);
   }
 
   public function login() {
     $users = new \models\User();
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+    $goto = filter_input(INPUT_POST, "goto", FILTER_SANITIZE_URL);
+    
     $user = $users->getUser($username);
     // $hash = Password::make($_POST['password']);
 
@@ -32,29 +39,40 @@ class Auth extends \core\controller {
 
     if( $user[0]['username'] ) {
        if( Password::verify($password, $user[0]['password']) ) { //authenticated
-        Session::set('username',$username);
-        Session::set('acl',$user[0]['acl']);
-        Url::redirect('');
+        Session::set("username",$username);
+        Session::set("acl",$user[0]['acl']);
+        
+        if( $goto == "" || $goto == DIR . "login" ) {
+          Url::redirect("");
+        } else {
+          header("Location: $goto");
+        }
       } else {
-        $data['title'] = SITETITLE . " Login";
         $data['warning'] = "bad password, please try again";
-        $data['username'] = $username;
         $data['jq'] = "\$('.row').slideDown(900, function(){\$('#password').focus();});";
       }
     } else {
-      $data['title'] = SITETITLE . " Login";
       $data['error'] = "bad email, please try again";
-      $data['username'] = $username;
       $data['jq'] = "\$('.row').slideDown(900, function(){\$('#username').select();});";
     }
-    View::rendertemplate('header',$data);
-    View::rendertemplate('menu',$data);
-    View::render('login',$data);
-    View::rendertemplate('footer',$data);
+    $data['title'] = SITETITLE . " Login";
+    $data['username'] = $username;
+    
+    View::rendertemplate("header",$data);
+    //View::rendertemplate("menu",$data);
+    View::render("login",$data);
+    View::rendertemplate("footer",$data);
   }
 
   public function logout() {
-    Session::pull('username');
-    Url::redirect('');
+    Session::pull("username");
+    Session::pull("acl");
+    
+    $goto = filter_input(INPUT_SERVER, "HTTP_REFERER", FILTER_SANITIZE_URL);
+    if($goto == "") {
+      Url::redirect("");
+    } else {
+      header("Location: $goto");
+    }
   }
 }

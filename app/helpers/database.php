@@ -23,7 +23,7 @@ class Database extends PDO{
 			Logger::newMessage($e);
 			logger::customErrorMsg();
 		}
-
+    
 	}
 
 	/**

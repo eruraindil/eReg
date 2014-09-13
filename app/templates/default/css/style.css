@@ -55,6 +55,14 @@ hr {
 	border-top:1px solid #ccc;
 }
 
+#calendar th {
+  width: 14.2%;
+}
+
+#calendar .panel-body {
+  min-height: 100px;
+}
+
 #footer {
 }
 

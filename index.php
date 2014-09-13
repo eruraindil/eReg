@@ -58,16 +58,31 @@ use \core\router as Router,
     \helpers\url as Url;
 
 //define routes
-Router::any('', 			'\controllers\Welcome@index');
-Router::get('about', 	'\controllers\Welcome@about');
+Router::any( '', 			'\controllers\Welcome@index');
+Router::get( 'about', 	'\controllers\Welcome@about');
 
-Router::get('events', 	'\controllers\Events@index');
-Router::get('events/(:num)', 	'\controllers\Events@show');
-Router::get('events/(:num)/edit', 	'\controllers\Events@edit');
+/*
+ *  articles GET    /articles(.:format)          articles#index
+             POST   /articles(.:format)          articles#create
+ new_article GET    /articles/new(.:format)      articles#new
+edit_article GET    /articles/:id/edit(.:format) articles#edit
+     article GET    /articles/:id(.:format)      articles#show
+             PATCH  /articles/:id(.:format)      articles#update
+             PUT    /articles/:id(.:format)      articles#update
+             DELETE /articles/:id(.:format)      articles#destroy
+ */
 
-Router::get('login', 	'\controllers\Auth@index');
-Router::post('login', '\controllers\Auth@login');
-Router::any('logout', '\controllers\Auth@logout');
+Router::get( 'events',              '\controllers\Events@index');
+Router::post('events',              '\controllers\Events@create');
+Router::get( 'events/new',          '\controllers\Events@make');
+Router::get( 'events/(:num)/edit',  '\controllers\Events@edit');
+Router::get( 'events/(:num)',       '\controllers\Events@show');
+Router::post('events/(:num)',       '\controllers\Events@update');
+Router::post('events/(:num)/remove','\controllers\Events@destroy');
+
+Router::get( 'login',            	'\controllers\Auth@index');
+Router::post('login',             '\controllers\Auth@login');
+Router::any( 'logout',            '\controllers\Auth@logout');
 
 //if no route found
 Router::error('\core\error@index');
