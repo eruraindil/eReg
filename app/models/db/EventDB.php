@@ -8,7 +8,6 @@ class EventDB implements \models\gen\ModelInterface {
 	protected $startTime;
 	protected $endTime;
 	protected $cost;
-	protected $curAttendance;
 	protected $maxAttendance;
 	protected $location;
 	protected $description;
@@ -51,12 +50,6 @@ class EventDB implements \models\gen\ModelInterface {
 	public function setCost($cost) {
 		$this->cost = $cost;
 	}
-	public function getCurAttendance() {
-		return $this->curAttendance;
-	}
-	public function setCurAttendance($curAttendance) {
-		$this->curAttendance = $curAttendance;
-	}
 	public function getMaxAttendance() {
 		return $this->maxAttendance;
 	}
@@ -78,12 +71,12 @@ class EventDB implements \models\gen\ModelInterface {
 
 	public function save() {
 		$obj = self::getObj($this->id);
-		$data = array('name' => $this->name, 'startTime' => $this->startTime, 'endTime' => $this->endTime, 'cost' => $this->cost, 'curAttendance' => $this->curAttendance, 'maxAttendance' => $this->maxAttendance, 'location' => $this->location, 'description' => $this->description);		if($obj) {//update
+		$data = array('name' => $this->name, 'startTime' => $this->startTime, 'endTime' => $this->endTime, 'cost' => $this->cost, 'maxAttendance' => $this->maxAttendance, 'location' => $this->location, 'description' => $this->description);		if($obj) {//update
 			$this->db->update("Event",$data,array('id' => $this->id));
 			return $this->id;
 		} else {//insert
 			$this->db->insert("Event",$data);
-			$obj = self::getObj("select * from Event where name = :name AND startTime = :startTime AND endTime = :endTime AND cost = :cost AND curAttendance = :curAttendance AND maxAttendance = :maxAttendance AND location = :location AND description = :description",array(':name' => $this->name, ':startTime' => $this->startTime, ':endTime' => $this->endTime, ':cost' => $this->cost, ':curAttendance' => $this->curAttendance, ':maxAttendance' => $this->maxAttendance, ':location' => $this->location, ':description' => $this->description));
+			$obj = self::getObj("select * from Event where name = :name AND startTime = :startTime AND endTime = :endTime AND cost = :cost AND maxAttendance = :maxAttendance AND location = :location AND description = :description",array(':name' => $this->name, ':startTime' => $this->startTime, ':endTime' => $this->endTime, ':cost' => $this->cost, ':maxAttendance' => $this->maxAttendance, ':location' => $this->location, ':description' => $this->description));
 			return $obj->id;
 		}
 	}
@@ -97,7 +90,7 @@ class EventDB implements \models\gen\ModelInterface {
 		} else {
 			$obj = $db->select($sql . ' limit 1',$params);
 		}
-		return new \models\Event($obj[0]);
+		return $obj ? new \models\Event($obj[0]) : null;
 	}
 
 	public static function getObjs($sql,$params = array()) {
@@ -153,14 +146,6 @@ class EventDB implements \models\gen\ModelInterface {
 
 	public static function getObjsByCost($cost) {
 		return self::getObjs('select * from Event where cost = :cost',array(':cost' =>$cost));
-	}
-
-	public static function getObjByCurAttendance($curAttendance) {
-		return self::getObj('select * from Event where curAttendance = :curAttendance',array(':curAttendance' => $curAttendance));
-	}
-
-	public static function getObjsByCurAttendance($curAttendance) {
-		return self::getObjs('select * from Event where curAttendance = :curAttendance',array(':curAttendance' =>$curAttendance));
 	}
 
 	public static function getObjByMaxAttendance($maxAttendance) {

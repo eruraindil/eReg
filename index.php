@@ -80,6 +80,13 @@ Router::get( 'events/(:num)',       '\controllers\Events@show');
 Router::post('events/(:num)',       '\controllers\Events@update');
 Router::post('events/(:num)/remove','\controllers\Events@destroy');
 
+Router::post('registrations',              '\controllers\Events@create');
+Router::get( 'registrations/new/(:num)',   '\controllers\Events@make');
+Router::get( 'registrations/(:num)/edit',  '\controllers\Events@edit');
+Router::get( 'registrations/(:num)',       '\controllers\Events@show');
+Router::post('registrations/(:num)',       '\controllers\Events@update');
+Router::post('registrations/(:num)/remove','\controllers\Events@destroy');
+
 Router::get( 'login',            	'\controllers\Auth@index');
 Router::post('login',             '\controllers\Auth@login');
 Router::any( 'logout',            '\controllers\Auth@logout');

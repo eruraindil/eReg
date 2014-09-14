@@ -116,7 +116,7 @@ class GenModels {
     $output .= "\t\t} else {\n";
     $output .= "\t\t\t\$obj = \$db->select(\$sql . ' limit 1',\$params);\n";
     $output .= "\t\t}\n";
-    $output .= "\t\treturn new \\models\\" . $table[0] . "(\$obj[0]);\n";
+    $output .= "\t\treturn \$obj ? new \\models\\" . $table[0] . "(\$obj[0]) : null;\n";
     $output .= "\t}\n\n";
     
     $output .= "\tpublic static function getObjs(\$sql,\$params = array()) {\n";

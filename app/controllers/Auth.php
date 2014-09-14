@@ -26,21 +26,22 @@ class Auth extends \core\controller {
   }
 
   public function login() {
-    $users = new \models\User();
     $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
     $goto = filter_input(INPUT_POST, "goto", FILTER_SANITIZE_URL);
     
-    $user = $users->getUser($username);
+    $user = \models\User::getObjByUsername($username);
+    
+    echo "<pre>" . print_r($user,1) . "</pre>";
     // $hash = Password::make($_POST['password']);
 
     // echo "<pre>" . print_r($user[0],1) . "</pre>";
     // echo "<pre>" . print_r($hash,1) . "</pre>";
 
-    if( $user[0]['username'] ) {
-       if( Password::verify($password, $user[0]['password']) ) { //authenticated
+    if( $user ) {
+       if( Password::verify($password, $user->getPassword()) ) { //authenticated
         Session::set("username",$username);
-        Session::set("acl",$user[0]['acl']);
+        Session::set("acl",$user->getAcl());
         
         if( $goto == "" || $goto == DIR . "login" ) {
           Url::redirect("");

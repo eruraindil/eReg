@@ -1,7 +1,7 @@
 <?php namespace models\db;
 use \core\model as Model;
 
-class RegistrantDB implements \models\gen\ModelInterface {
+class RegistrationDB implements \models\gen\ModelInterface {
 	protected $db;
 	protected $id;
 	protected $firstName;
@@ -58,11 +58,11 @@ class RegistrantDB implements \models\gen\ModelInterface {
 	public function save() {
 		$obj = self::getObj($this->id);
 		$data = array('firstName' => $this->firstName, 'lastName' => $this->lastName, 'email' => $this->email, 'birthDate' => $this->birthDate, 'event' => $this->event);		if($obj) {//update
-			$this->db->update("Registrant",$data,array('id' => $this->id));
+			$this->db->update("Registration",$data,array('id' => $this->id));
 			return $this->id;
 		} else {//insert
-			$this->db->insert("Registrant",$data);
-			$obj = self::getObj("select * from Registrant where firstName = :firstName AND lastName = :lastName AND email = :email AND birthDate = :birthDate AND event = :event",array(':firstName' => $this->firstName, ':lastName' => $this->lastName, ':email' => $this->email, ':birthDate' => $this->birthDate, ':event' => $this->event));
+			$this->db->insert("Registration",$data);
+			$obj = self::getObj("select * from Registration where firstName = :firstName AND lastName = :lastName AND email = :email AND birthDate = :birthDate AND event = :event",array(':firstName' => $this->firstName, ':lastName' => $this->lastName, ':email' => $this->email, ':birthDate' => $this->birthDate, ':event' => $this->event));
 			return $obj->id;
 		}
 	}
@@ -72,11 +72,11 @@ class RegistrantDB implements \models\gen\ModelInterface {
 		$model = new Model();
 		$db = $model->getDb();
 		if(\is_numeric($sql) == 'integer') {
-			$obj = $db->select('select * from Registrant where id = :id limit 1', array(':id' => $sql));
+			$obj = $db->select('select * from Registration where id = :id limit 1', array(':id' => $sql));
 		} else {
 			$obj = $db->select($sql . ' limit 1',$params);
 		}
-		return new \models\Registrant($obj[0]);
+		return $obj ? new \models\Registration($obj[0]) : null;
 	}
 
 	public static function getObjs($sql,$params = array()) {
@@ -85,61 +85,61 @@ class RegistrantDB implements \models\gen\ModelInterface {
 		$objs = $db->select($sql,$params);
 		$output = array();
 		foreach( $objs as $obj ) {
-			$output[] = new \models\Registrant($obj);
+			$output[] = new \models\Registration($obj);
 		}
 		return $output;
 	}
 
 	public static function getObjsAll() {
-		return self::getObjs('select * from Registrant');
+		return self::getObjs('select * from Registration');
 	}
 
 	public static function getObjById($id) {
-		return self::getObj('select * from Registrant where id = :id',array(':id' => $id));
+		return self::getObj('select * from Registration where id = :id',array(':id' => $id));
 	}
 
 	public static function getObjsById($id) {
-		return self::getObjs('select * from Registrant where id = :id',array(':id' =>$id));
+		return self::getObjs('select * from Registration where id = :id',array(':id' =>$id));
 	}
 
 	public static function getObjByFirstName($firstName) {
-		return self::getObj('select * from Registrant where firstName = :firstName',array(':firstName' => $firstName));
+		return self::getObj('select * from Registration where firstName = :firstName',array(':firstName' => $firstName));
 	}
 
 	public static function getObjsByFirstName($firstName) {
-		return self::getObjs('select * from Registrant where firstName = :firstName',array(':firstName' =>$firstName));
+		return self::getObjs('select * from Registration where firstName = :firstName',array(':firstName' =>$firstName));
 	}
 
 	public static function getObjByLastName($lastName) {
-		return self::getObj('select * from Registrant where lastName = :lastName',array(':lastName' => $lastName));
+		return self::getObj('select * from Registration where lastName = :lastName',array(':lastName' => $lastName));
 	}
 
 	public static function getObjsByLastName($lastName) {
-		return self::getObjs('select * from Registrant where lastName = :lastName',array(':lastName' =>$lastName));
+		return self::getObjs('select * from Registration where lastName = :lastName',array(':lastName' =>$lastName));
 	}
 
 	public static function getObjByEmail($email) {
-		return self::getObj('select * from Registrant where email = :email',array(':email' => $email));
+		return self::getObj('select * from Registration where email = :email',array(':email' => $email));
 	}
 
 	public static function getObjsByEmail($email) {
-		return self::getObjs('select * from Registrant where email = :email',array(':email' =>$email));
+		return self::getObjs('select * from Registration where email = :email',array(':email' =>$email));
 	}
 
 	public static function getObjByBirthDate($birthDate) {
-		return self::getObj('select * from Registrant where birthDate = :birthDate',array(':birthDate' => $birthDate));
+		return self::getObj('select * from Registration where birthDate = :birthDate',array(':birthDate' => $birthDate));
 	}
 
 	public static function getObjsByBirthDate($birthDate) {
-		return self::getObjs('select * from Registrant where birthDate = :birthDate',array(':birthDate' =>$birthDate));
+		return self::getObjs('select * from Registration where birthDate = :birthDate',array(':birthDate' =>$birthDate));
 	}
 
 	public static function getObjByEvent($event) {
-		return self::getObj('select * from Registrant where event = :event',array(':event' => $event));
+		return self::getObj('select * from Registration where event = :event',array(':event' => $event));
 	}
 
 	public static function getObjsByEvent($event) {
-		return self::getObjs('select * from Registrant where event = :event',array(':event' =>$event));
+		return self::getObjs('select * from Registration where event = :event',array(':event' =>$event));
 	}
 
 }

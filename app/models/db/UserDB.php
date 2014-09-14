@@ -83,7 +83,7 @@ class UserDB implements \models\gen\ModelInterface {
 		} else {
 			$obj = $db->select($sql . ' limit 1',$params);
 		}
-		return new \models\User($obj[0]);
+		return $obj ? new \models\User($obj[0]) : null;
 	}
 
 	public static function getObjs($sql,$params = array()) {

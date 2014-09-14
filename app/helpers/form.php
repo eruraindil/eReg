@@ -20,7 +20,7 @@ class form {
         $o .= (isset($params['name']))      ? " name='{$params['name']}'"                   : '';
         $o .= (isset($params['class']))     ? " class='{$params['class']}'"                 : '';
         $o .= (isset($params['onsubmit']))  ? " onsubmit='{$params['onsubmit']}'"           : '';
-        $o .= (isset($params['method']))    ? " method='{$params['method']}'"               : ' method="get"';
+        $o .= (isset($params['method']))    ? " method='{$params['method']}'"               : ' method="post"';
         $o .= (isset($params['action']))    ? " action='{$params['action']}'"               : '';
         $o .= (isset($params['files']))     ? " enctype='multipart/form-data'"              : '';
         $o .= (isset($params['style']))     ? " style='{$params['style']}'"                 : '';
@@ -201,15 +201,18 @@ class form {
      * @return  string
      */
     public function submit($params = array()) {
-        $o = '<input type="submit"';
+        $o = "<div class='btn-group'>\n";
+        $o .= '<input type="submit"';
         $o .= (isset($params['id']))        ? " id='{$params['id']}'"                           : '';
         $o .= (isset($params['name']))      ? " name='{$params['name']}'"                       : '';
-        $o .= (isset($params['class']))     ? " class='{$params['class']}'"                     : '';
+        $o .= (isset($params['class']))     ? " class='btn btn-primary {$params['class']}'"                     : " class='btn btn-primary'";
         $o .= (isset($params['onclick']))   ? " onclick='{$params['onclick']}'"                 : '';
         $o .= (isset($params['value']))     ? " value='{$params['value']}'"                     : '';
         $o .= (isset($params['disabled']))  ? " disabled='{$params['disabled']}'"               : '';
         $o .= (isset($params['style']))     ? " style='{$params['style']}'"                 : '';
         $o .= " />\n";
+        $o .= "<a href='" . $params['cancel'] . "' class='btn btn-default " . $params['class'] . "'>Cancel</a>\n";
+        $o .= "</div>\n";
         return $o;
     }
  
