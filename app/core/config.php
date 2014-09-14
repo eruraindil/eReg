@@ -26,7 +26,7 @@ class Config {
 		define('DB_NAME','ereg');
 		define('DB_USER','ereg');
 		define('DB_PASS','smvc');
-		define('PREFIX','smvc_');
+		define('PREFIX','');
 
 		//set prefix for sessions
 		define('SESSION_PREFIX','smvc_');
@@ -49,7 +49,7 @@ class Config {
 
 		//set the default template
 		\helpers\session::set('template','default');
-
+    
 	}
 
 }

@@ -2,7 +2,8 @@
 use \core\view as View,
 		\helpers\session as Session,
 		\helpers\url as Url,
-    \models\Event as Event;
+    \models\Event as Event,
+    \models\Registrant as Registrant;
 
 class Events extends \core\controller {
   public function __construct(){
@@ -48,11 +49,9 @@ class Events extends \core\controller {
   }
   
   public function show($slug){
-    $registrants = new \models\Registrant();
-    
     $data['event'] = Event::getObj($slug);
-    $data['registrants'] = $registrants->getRegistrantsAllForEvent($slug);
-    $data['title'] = $data['event']->name;
+    $data['registrants'] = Registrant::getObjsByEvent($slug);
+    $data['title'] = $data['event']->getName();
     
 		View::rendertemplate('header',$data);
 		View::rendertemplate('menu',$data);
@@ -62,15 +61,27 @@ class Events extends \core\controller {
   }
   
   public function update($slug){
-    $events = new \models\Event();
-    
-    $event = $events->getEvent($slug);
+    $event = Event::getObj($slug);
     
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
     $startTime = filter_input(INPUT_POST, "startTime", FILTER_SANITIZE_STRING);
     $endTime = filter_input(INPUT_POST, "endTime", FILTER_SANITIZE_STRING);
-    $location = filter_input(INPUT_POST, "location", FILTER_SANITIZE_STRING);
+    $cost = filter_input(INPUT_POST, "endTime", FILTER_SANITIZE_NUMBER_FLOAT);
     $maxAttendance = filter_input(INPUT_POST, "maxAttendance", FILTER_SANITIZE_NUMBER_INT);
+    $location = filter_input(INPUT_POST, "location", FILTER_SANITIZE_STRING);
+    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
+    
+    $event->name = $name;
+	  $event->startTime = $startTime;
+	  $event->endTime = $endTime;
+	  $event->cost = $cost;
+	  $event->maxAttendance = $maxAttendance;
+	  $event->location = $location;
+	  $event->description = $description;
+    
+    $event->save();
+    
+    Url::redirect("/events/$slug");
+    
   }
 }

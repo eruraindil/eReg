@@ -1,12 +1,11 @@
 <?php namespace models;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
-class User extends \core\model {
-  function __construct(){
-	   parent::__construct();
+class User extends \models\db\RegistrantDB {
+  function __construct( $fields ){
+	   parent::__construct( $fields );
 	}
 
   public function getUser($username) {
-    return Capsule::table('User')->where('username', '=', $username)->get();
+    //return Capsule::table('User')->where('username', '=', $username)->get();
   }
 }

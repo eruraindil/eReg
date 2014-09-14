@@ -28,6 +28,10 @@ class Controller {
 
 		//initialise the views object
 		$this->view = new view();
+    
+    if(ENVIRONMENT == 'development') {
+      \models\gen\GenModels::go();
+    }
 	}
 
 	/**

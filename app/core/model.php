@@ -21,9 +21,9 @@ class Model extends Controller {
 	public function __construct(){
 		//connect to PDO here.
 		$this->_db = new \helpers\database();
-    if( ENVIRONMENT == "development") {
-      \models\gen\GenModels::go();
-    }
+//    if( ENVIRONMENT == "development") {
+//      \models\gen\GenModels::go();
+//    }
 	}
   
   public function getDb() {
