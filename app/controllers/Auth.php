@@ -31,8 +31,6 @@ class Auth extends \core\controller {
     $goto = filter_input(INPUT_POST, "goto", FILTER_SANITIZE_URL);
     
     $user = \models\User::getObjByUsername($username);
-    
-    echo "<pre>" . print_r($user,1) . "</pre>";
     // $hash = Password::make($_POST['password']);
 
     // echo "<pre>" . print_r($user[0],1) . "</pre>";

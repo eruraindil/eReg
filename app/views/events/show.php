@@ -4,16 +4,24 @@ $event = $data['event'];
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1 content">
-    <h1><?php echo $data['title'];?></h1>
+    <h1>
+      <?php echo $data['title'];?>
+    </h1>
+    <?php if(Session::get("acl") == "admin"):?>
+    <div class="btn-group pull-right">
+      <a href="<?php echo DIR . "events/" . $event->getId();?>/edit" class="btn btn-warning btn-sm">Edit <span class="glyphicon glyphicon-edit"></span></a>
+      <a href="" class="btn btn-danger btn-sm">Delete <span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+    <?php endif;?>
     <ol class="breadcrumb">
       <li><a href="<?php echo DIR;?>events">Events</a></li>
-      <li class="active"><?php echo $data['event']->getName();?></li>
+      <li class="active"><?php echo $event->getName();?></li>
     </ol>
     <div class="row">
       <div class="col-md-7">
         <div class="panel panel-default">
           <div class="panel-body">
-            <?php echo $data['event']->getDescription();?>
+            <?php echo $event->getDescription();?>
           </div>
         </div>
       </div>
@@ -48,17 +56,11 @@ $event = $data['event'];
             </td>
           </tr>
         </table>
-        <div class="btn-group">
-          <?php if(!$event->isFull()):?>
-          <a class="btn btn-primary btn-lg" href="<?php echo DIR . "registrations/new/" . $data['event']->getId();?>">Register</a>
-          <?php else:?>
-          <button class="btn btn-primary btn-lg disabled">Full</button>
-          <?php endif;?>
-          <?php if(Session::get("acl") == "admin"):?>
-          <a href="<?php echo DIR . "events/" . $data['event']->getId();?>/edit" class="btn btn-warning btn-lg">Edit <span class="glyphicon glyphicon-edit"></span></a>
-          <a href="" class="btn btn-danger btn-lg">Delete <span class="glyphicon glyphicon-remove"></span></a>
-          <?php endif;?>
-        </div>
+        <?php if(!$event->isFull()):?>
+          <a class="btn btn-primary btn-lg btn-block" href="<?php echo DIR . "registrations/new/" . $event->getId();?>">Register</a>
+        <?php else:?>
+          <button class="btn btn-primary btn-lg btn-block disabled">Full</button>
+        <?php endif;?>
       </div>
     </div>
     <?php if( Session::get("acl") == "admin"):?>
@@ -68,15 +70,13 @@ $event = $data['event'];
         <ul class="list-group" id="events-list">
           <?php foreach( $data['registrations'] as $registration ):?>
           <li class="list-group-item"><a href="<?php echo DIR . "registrations/" . $registration->getId();?>"><?php echo $registration->getFirstName() . " " . $registration->getLastName();?></a>
-            <?php if( Session::get("acl") == "admin"):?>
             <div class="btn-group pull-right">
               <a href="<?php echo DIR . "registrations/" . $registration->getId() . "/remove";?>" class="btn btn-xs btn-danger">Remove <span class="glyphicon glyphicon-remove"></span></a>
             </div>
-            <?php endif;?>
           </li>
           <?php endforeach; ?>
         </ul>
-        <?php if( count($data['registrants']) == 0 ):?>
+        <?php if( count($data['registrations']) == 0 ):?>
         <p>No registrations</p>
         <?php endif;?>
       </div>

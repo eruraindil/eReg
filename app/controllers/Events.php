@@ -66,10 +66,10 @@ class Events extends \core\controller {
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
     $startTime = filter_input(INPUT_POST, "startTime", FILTER_SANITIZE_STRING);
     $endTime = filter_input(INPUT_POST, "endTime", FILTER_SANITIZE_STRING);
-    $cost = filter_input(INPUT_POST, "cost", FILTER_SANITIZE_NUMBER_FLOAT);
+    $cost = filter_input(INPUT_POST, "cost", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $maxAttendance = filter_input(INPUT_POST, "maxAttendance", FILTER_SANITIZE_NUMBER_INT);
     $location = filter_input(INPUT_POST, "location", FILTER_SANITIZE_STRING);
-    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
+    $description = filter_input(INPUT_POST, "description", FILTER_UNSAFE_RAW);
     
     $event->setName($name);
 	  $event->setStartTime($startTime);

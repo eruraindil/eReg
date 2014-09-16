@@ -67,13 +67,18 @@ echo Form::open(array("action" => DIR . "events/" . $event->getId()));?>
                   <span class="input-group-addon">
                     $ 
                   </span>
-                  <input type="number" step="0.01" class="form-control" id="cost" name="cost" value="<?php echo $event->getCost(); ?>">
+                  <input type="number" step="any" class="form-control" id="cost" name="cost" value="<?php echo $event->getCost(); ?>">
                 </div>
               </div>
             </td>
           </tr>
         </table>
-        <?php echo Form::submit(array("value"=>"Save","class"=>"btn-lg","cancel"=>DIR . "events/" . $event->getId()));?>
+        <?php echo Form::submit(
+          array(
+            "value"=>"Save",
+            "class"=>"btn-lg",
+            "cancel"=>DIR . "events/" . $event->getId())
+        );?>
       </div>
     </div>
   </div>
