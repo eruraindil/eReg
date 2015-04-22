@@ -22,7 +22,7 @@ class Config {
     
     //database details ONLY NEEDED IF USING A DATABASE
 		define('DB_TYPE','mysql');
-		define('DB_HOST','localhost');
+		define('DB_HOST','racetrack.home.mroberts.me');
 		define('DB_NAME','ereg');
 		define('DB_USER','ereg');
 		define('DB_PASS','smvc');

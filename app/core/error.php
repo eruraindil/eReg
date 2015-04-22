@@ -30,6 +30,8 @@ class Error extends Controller {
 	 * load a 404 page with the error message
 	 */
 	public function index(){
+    
+    header("HTTP/1.0 404 Not Found");
 
 		$data['title'] = '404';
 		$data['error'] = $this->_error;
@@ -41,6 +43,23 @@ class Error extends Controller {
 		View::rendertemplate('footer',$data);
 
 	}
+  
+  public function internal(){
+    
+    header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+
+		$data['title'] = '500';
+		$data['error'] = $this->_error;
+
+		View::rendertemplate('header',$data);
+		View::rendertemplate('menu',$data);
+		View::render('error/500',$data);
+		View::rendertemplate('content-bottom',$data);
+		View::rendertemplate('footer',$data);
+
+	}
+  
+  
 
 	/**
 	 * display errors
