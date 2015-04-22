@@ -1,0 +1,81 @@
+/*
+* Place css styles below.
+*/
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+	/*margin-top: 60px;*/
+	background: url('../media/lake.jpg') no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+#page-title {
+  font-family: "Poiret One", cursive;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+#main-nav {
+	float: right;
+}
+#main-nav > li > a {
+	color: #333;
+	font-weight: bold;
+}
+
+#main-nav > li.active > a {
+	color: #333;
+	font-weight: bold;
+	background: #f5f5f5;
+}
+#main-nav > li {
+	display: inline-block;
+}
+.nav-pills>li>a {
+  border-radius: 6px 6px 0 0;
+}
+
+.content {
+	background-color: #f5f5f5;
+}
+
+img.pull-right {
+	margin-left: 10px;
+}
+
+img.pull-left {
+	margin-right: 10px;
+}
+
+hr {
+	border-top:1px solid #ccc;
+}
+
+#calendar th {
+  width: 14.2%;
+}
+
+#calendar .panel-body {
+  min-height: 100px;
+}
+
+#footer {
+}
+
+#footer div {
+	background-color: #f5f5f5;
+	min-height: 50px;
+}
+
+.content .table {
+  background-color: #fff;
+}
+
+h1,h2,h3,h4,h1 small, h2 small, h3 small, h4 small {
+  font-family: 'Poiret One', cursive;
+  font-weight: bold;
+}

@@ -4,7 +4,7 @@ use \helpers\database as Database;
 class GenModels {
   
   public static function go() {
-    $db = new Database();
+    $db = Database::get();
     
     $query = $db->prepare("show tables from " . DB_NAME);
     $query->execute();
@@ -48,7 +48,7 @@ class GenModels {
   public static function writeDBFile($table) {
     $output = "";
     $output .= "<?php namespace models\db;\n";
-    $output .= "use \\core\\model as Model;\n\n";
+    $output .= "use \\models\\gen\\ModelClass as Model;\n\n";
     $output .= "class $table[0]DB implements \\models\\gen\\ModelInterface {\n";
     
     $output .= "\tprotected \$db;\n";

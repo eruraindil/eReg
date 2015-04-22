@@ -8,6 +8,10 @@ if(file_exists('vendor/autoload.php')){
 	exit;
 }
 
+if (!is_readable('app/core/config.php')) {
+	die('No config.php found, configure and rename config.example.php to config.php in app/core.');
+}
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -42,7 +46,6 @@ if (defined('ENVIRONMENT')){
 			error_reporting(E_ALL);
 			ini_set("display_errors", 1);
 		break;
-  
 		case 'production':
 			error_reporting(0);
 		break;
@@ -53,9 +56,12 @@ if (defined('ENVIRONMENT')){
 
 }
 
+//initiate config
+new \core\config();
+
 //create alias for Router
-use \core\router as Router,
-    \helpers\url as Url;
+use \core\router,
+    \helpers\url;
 
 //define routes
 Router::any( '', 			'\controllers\Welcome@index');
@@ -93,6 +99,9 @@ Router::any( 'logout',            '\controllers\Auth@logout');
 
 //if no route found
 Router::error('\core\error@index');
+
+//turn on old style routing
+Router::$fallback = false;
 
 //execute matched routes
 Router::dispatch();

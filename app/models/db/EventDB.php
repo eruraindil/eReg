@@ -1,5 +1,5 @@
 <?php namespace models\db;
-use \core\model as Model;
+use \models\gen\ModelClass as Model;
 
 class EventDB implements \models\gen\ModelInterface {
 	protected $db;

@@ -1,7 +1,6 @@
 <?php namespace core;
-use core\config as Config,
-    core\view as View,
-    core\error as Error;
+use core\view,
+	core\language;
 
 /*
  * controller - base controller
@@ -10,39 +9,30 @@ use core\config as Config,
  * @version 2.1
  * @date June 27, 2014
  */
-class Controller {
 
+abstract class Controller {
+	
 	/**
 	 * view variable to use the view class
 	 * @var string
 	 */
 	public $view;
+	public $language;
 
 	/**
-	 * on run make an instance of the config class and view class 
+	 * on run make an instance of the config class and view class
 	 */
 	public function __construct(){
 		
-		//initialise the config object
-		new config();
-
 		//initialise the views object
 		$this->view = new view();
     
     if(ENVIRONMENT == 'development') {
       \models\gen\GenModels::go();
     }
-	}
-
-	/**
-	 * Display an error page if nothing exists
-	 * @param	string $error
-	 */
-	protected function _error($error) {
-		require 'app/core/error.php';
-		$this->_controller = new error($error);
-	    	$this->_controller->index();
-	    	die;
+    
+		//initialise the language object
+		$this->language = new Language();
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php namespace core;
-use core\controller as Controller,
-    core\view as View;
+use core\controller,
+    core\view;
 
 /*
  * error class - calls a 404 page
@@ -30,9 +30,9 @@ class Error extends Controller {
 	 * load a 404 page with the error message
 	 */
 	public function index(){
-    
-    header("HTTP/1.0 404 Not Found");
 
+		header("HTTP/1.0 404 Not Found");
+		
 		$data['title'] = '404';
 		$data['error'] = $this->_error;
 
@@ -67,14 +67,21 @@ class Error extends Controller {
 	 * @param  string $class name of class to apply to div
 	 * @return string        return the errors inside divs
 	 */
-	static public function display(array $error,$class = 'error'){
-		$errorrow = null;
-	    if (is_array($error)){
-	       foreach($error as $error){
-	       	$errorrow.= "<div class='$class'>".$error."</div>";
-	       }
-	       return $errorrow;
-	    }
+	public static function display($error, $class = 'alert alert-danger'){
+		if (is_array($error)){
+
+			foreach($error as $error){
+				$row.= "<div class='$class'>$error</div>";
+			}
+			return $row;
+
+		} else {
+
+			if(isset($error)){
+				return "<div class='$class'>$error</div>";
+			}
+
+		}
 	}
 
 }
