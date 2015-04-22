@@ -44,8 +44,8 @@
               <div class="panel-heading"><?php echo $day;?></div>
               <div class="panel-body">
               <?php foreach($data['events'] as $event) {
-                if($day === (int) \date("j",strtotime($event['startTime']))):?>
-                  <span class="label label-primary"><?php echo $event['name'];?></span>
+                if($day === (int) \date("j",strtotime($event->getStartTime()))):?>
+                  <span class="label label-primary"><?php echo $event->getName();?></span>
                 <?php endif;
               }?>
               </div>

@@ -1,3 +1,5 @@
 /nbproject/private/
 /vendor/**
 !/vendor/composer
+app/core/config.php
+.DS_Store

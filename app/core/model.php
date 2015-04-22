@@ -1,4 +1,5 @@
 <?php namespace core;
+
 /*
  * model - the base model
  *
@@ -7,7 +8,7 @@
  * @date June 27, 2014
  */
 
-class Model extends Controller {
+abstract class Model extends Controller {
 
 	/**
 	 * hold the database connection
@@ -19,11 +20,10 @@ class Model extends Controller {
 	 * create a new instance of the database helper
 	 */
 	public function __construct(){
+
 		//connect to PDO here.
-		$this->_db = new \helpers\database();
-//    if( ENVIRONMENT == "development") {
-//      \models\gen\GenModels::go();
-//    }
+		$this->_db = \helpers\database::get();
+
 	}
   
   public function getDb() {
